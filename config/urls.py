@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('trip.urls'))
+    path('', include('trip.urls')),
+    path('accounts/', include('django.contrib.auth.urls')) # app in settings -> we have urls, but we need to make templates for them 
 ]
 
 if settings.DEBUG:
