@@ -18,12 +18,25 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import SignupView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('trip.urls')),
-    path('accounts/', include('django.contrib.auth.urls')) # app in settings -> we have urls, but we need to make templates for them 
+    path('accounts/', include('django.contrib.auth.urls')), # app in settings -> we have urls, but we need to make templates for them 
+    path('accounts/signup/', SignupView.as_view(), name='signup'),
 ]
+
+"""
+    accounts/login/ [name='login']
+    accounts/logout/ [name='logout']
+    accounts/password_change/ [name='password_change']
+    accounts/password_change/done/ [name='password_change_done']
+    accounts/password_reset/ [name='password_reset']
+    accounts/password_reset/done/ [name='password_reset_done']
+    accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
+    accounts/reset/done/ [name='password_reset_complete']
+"""
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_group=settings.MEDIA_ROOT)
