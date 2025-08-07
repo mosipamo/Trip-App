@@ -61,3 +61,20 @@ class NoteCreateView(CreateView):
         trips = Trip.objects.filter(owner=self.request.user)
         form.fields['trip'].queryset = trips # drop down
         return form
+    
+class NoteUpdateView(UpdateView):
+    model = Note
+    success_url = reverse_lazy('note-list')
+    fields = '__all__'
+    
+    def get_form(self):
+        form = super(NoteUpdateView, self).get_form()
+        trips = Trip.objects.filter(owner=self.request.user)
+        form.fields['trip'].queryset = trips # drop down
+        return form
+    
+
+class NoteDeleteView(DeleteView):
+    model = Note
+    success_url = reverse_lazy('note-list')
+    # no template needed - send a post request to this url
