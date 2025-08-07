@@ -1,6 +1,12 @@
 {% extends 'trip/_base.html' %}
 {% load tailwind_filters %}
 
+{% block title %}
+    <title>
+        note-form
+    </title>
+{% endblock  %}
+
 {% block content %}
 <h1 class="text-4xl underline underline-offset-4 mb-8">Note Form</h1>
 <form action="" method="POST" enctype="multipart/form-data">

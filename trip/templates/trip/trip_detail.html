@@ -1,5 +1,11 @@
 {% extends 'trip/_base.html' %}
 
+{% block title %}
+    <title>
+        trip-detail of {{trip.country}} | {{trip.city}}
+    </title>
+{% endblock  %}
+
 {% block content %}
 <h1 class="text-4xl underline underline-offset-4 mb-8">Trip Details</h1>
     <div class="bg-gray-50 p-8 rounded shadow my-4">

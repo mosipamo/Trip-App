@@ -1,5 +1,11 @@
 {% extends 'trip/_base.html' %}
 
+{% block title %}
+    <title>
+        trip-list
+    </title>
+{% endblock  %}
+
 {% block content %}
 <h1 class="text-4xl underline underline-offset-4 mb-8">My Trips</h1>
 {% for trip in trips %}
