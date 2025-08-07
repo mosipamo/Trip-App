@@ -78,3 +78,15 @@ class NoteDeleteView(DeleteView):
     model = Note
     success_url = reverse_lazy('note-list')
     # no template needed - send a post request to this url
+
+
+class TripDeleteView(DeleteView):
+    model = Trip
+    success_url = reverse_lazy('trip-list')
+    
+
+class TripUpdateView(UpdateView):
+    model = Trip
+    success_url = reverse_lazy('note-list')
+    fields = ["city", "country", "start_date", "end_date"]
+    # template named model_form.html

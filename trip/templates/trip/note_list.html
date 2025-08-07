@@ -7,7 +7,13 @@
     {% for note in object_list %}
     <a href="{% url 'note-detail' note.pk %}">
         <div class="border-2 rounded-lg pb-4 hover:shadow">
-            <img class="w-48 h-32 object-cover overflow-hidden rounded-t-md" src="{{note.img.url}}" alt="{{note.name}}">
+            {% if note.img %}
+                <img class="w-48 h-32 object-cover overflow-hidden rounded-t-md" src="{{note.img.url}}" alt="{{note.name}}">
+            {% else %}
+                <div class="w-48 h-32 flex items-center justify-center bg-gray-200 rounded-t-md">
+                    <p class="text-gray-500">No Image</p>
+                </div>
+            {% endif %}
             <p class="text-center mt-3 text-lg">{{note.trip.city}}</p>
             <p class="text-center mt-1 text-lg">{{note.name}}</p>
             <p class="text-center mt-1 text-gray-600">Rating: {{note.rating}}/5</p>
