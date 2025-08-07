@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView, DetailView
+from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView, DetailView, ListView
 from .models import Trip, Note
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 # Create your views here.
 class HomeView(TemplateView):
     template_name = "trip/index.html"
-    
 
 def trip_list(request):
     trips = Trip.objects.filter(owner=request.user)
@@ -42,4 +41,11 @@ class TripDetailView(DetailView):
     
 class NoteDetailView(DetailView):
     model = Note
+
+class NoteListView(ListView):
+    model = Note
     
+    def get_queryset(self):
+        queryset = Note.objects.filter(trip__owner=self.request.user)
+        
+        return queryset
