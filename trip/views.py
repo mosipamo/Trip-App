@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView
+from django.views.generic import TemplateView, CreateView, DeleteView, UpdateView, DetailView
 from .models import Trip, Note
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
@@ -28,3 +28,14 @@ class TripCreateView(CreateView):
         form.instance.owner = self.request.user        
         
         return super().form_valid(form)
+    
+class TripDetailView(DetailView):
+    model = Trip
+    
+    # data stired on trip - also have the related notes
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        trip = context["object"]
+        notes = trip.notes.all()
+        context["notes"] = notes
+        return context
