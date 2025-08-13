@@ -129,7 +129,6 @@ Trip-App/
 - `type`: Note category (event, dining, experience, general)
 - `img`: Optional image upload
 - `rating`: Experience rating (1-5 scale)
-```
 
 ## 📦 Dependencies
 
